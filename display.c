@@ -32,7 +32,10 @@ void print_top(stack_t **stack, unsigned int line_number)
 	stack_t *next_plate = NULL;
 	if(stack == NULL || *stack == NULL)
 	{
-		fprintf(stderr, "L%u: can't pint\n", line_number);
+		fprintf(stderr, "L%u: can't pint, stack empty\n", line_number);
+		fclose(aux.file);
+		free(aux.line_inf);
+		freePlates(*stack);
 		exit(EXIT_FAILURE);
 	}
 
@@ -42,4 +45,78 @@ void print_top(stack_t **stack, unsigned int line_number)
 		next_plate = (*stack)->next;
 	}
 	printf("%d\n", next_plate->n);
+}
+
+
+/**
+ * printTopc -Print the top char (pchar)
+ * @stack: Pointer to the stack mem address
+ * @line_number: Is the current line number
+ */
+void printTopc(stack_t **stack, unsigned int line_number)
+{
+	stack_t *c_node = *stack;
+	if (c_node == NULL)
+	{
+		fprintf(stderr, "L%d can't pchar, stack empty\n", line_number);
+		fclose(aux.file);
+		free(aux.line_inf);
+		freePlates(*stack);
+		exit(EXIT_FAILURE);
+	}
+	if (c_node->n > 127 || c_node->n < 0)
+	{
+		fprintf(stderr, "L%d can't pchar, stack empty\n", line_number);
+		fclose(aux.file);
+		free(aux.line_inf);
+		freePlates(*stack);
+		exit(EXIT_FAILURE);
+	}
+	printf("%c\n", c_node->n);
+}
+/**
+ * printTopc -Print the top char (pchar)
+ * @stack: Pointer to the stack mem address
+ * @line_number: Is the current line number
+ */
+void printTopC(stack_t **stack, unsigned int line_number)
+{
+	stack_t *c_node = *stack;
+	if (c_node == NULL)
+	{
+		fprintf(stderr, "L%d can't pchar, stack empty\n", line_number);
+		fclose(aux.file);
+		free(aux.line_inf);
+		freePlates(*stack);
+		exit(EXIT_FAILURE);
+	}
+	if (c_node->n > 127 || c_node->n < 0)
+	{
+		fprintf(stderr, "L%d can't pchar, stack empty\n", line_number);
+		fclose(aux.file);
+		free(aux.line_inf);
+		freePlates(*stack);
+		exit(EXIT_FAILURE);
+	}
+	printf("%c\n", c_node->n);
+}
+
+/**
+ * printTopc -Print the top string (pstr)
+ * @stack: Pointer to the stack mem address
+ * @line_number: Is the current line number
+ */
+void printTopS(stack_t **stack, unsigned int line_number)
+{
+	stack_t *s_node = *stack;
+	(void)line_number;
+
+	while (s_node != NULL)
+	{
+		if (s_node->n > 127 || s_node->n < 0)
+			break;
+		printf("%c\n", s_node->n);
+		s_node = s_node->next;
+	}
+	printf("\n");
 }
