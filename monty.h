@@ -4,6 +4,11 @@
 /*Libraries*/
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <ctype.h>
+#include <fcntl.h>
+#include <sys/types.h>
 
 
 /*Structures*/
@@ -24,6 +29,19 @@ typedef struct stack_s
         struct stack_s *next;
 } stack_t;
 
+/**
+ *
+ *
+ */
+typedef struct aux_s
+{
+	char *val;
+	FILE *file;
+	char *line_inf;
+	int flag_sq;
+} aux_t;
+
+extern aux_t aux;
 
   /**
    * struct instruction_s - opcode and its function
@@ -38,5 +56,16 @@ typedef struct instruction_s
 	  char *opcode;
 	  void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
+
+
+
+/*Functions*/
+/*son 21*/
+void (*f)(stack_t **stack, unsigned int line_number)
+;void (*f)(stack_t **stack, unsigned int line_number);
+void (*f)(stack_t **stack, unsigned int line_number);
+void (*f)(stack_t **stack, unsigned int line_numbe
+void (*f)(stack_t **stack, unsigned int line_number);
+
 
 #endif
