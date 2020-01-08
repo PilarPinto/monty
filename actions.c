@@ -1,43 +1,44 @@
 #include "monty.h"
 /**
  * push_data - Add new data to stack
- * @stack. Is the pointer to the stack mem address
+ * @stack: Is the pointer to the stack mem address
  * @l: Is the current line number
  */
 void push_data(stack_t **stack, unsigned int l)
 {
 
-	int node, i = 0;
+	int push_data, ind = 0;
 
-	if (aux.val != NULL)
+	if (global.p_data != NULL)
 	{
-		if (aux.val[0] == '-')
-			i++;
-		for (; aux.val[i] != '\0', i++)
+		if (global.p_data[0] == '-')
+			ind++;
+		for (; global.p_data[ind] != '\0'; ind++)
 		{
-			if (isdigit(aux.val[i]) == 0)
+			if (isdigit(global.p_data[ind]) == 0)
 			{
-			       fprintf(stderr, "L%d: usage: push integer\n", l);
-			       fclose(aux.file);
-			       free(aux.line_inf);
-			       freePlates(*stack);
-			       exit(EXIT_FAILURE);			}
+				fprintf(stderr, "L%d: usage: push integer\n", l);
+				fclose(global.f_hand);
+				free(global.monty_line);
+				freePlates(*stack);
+				exit(EXIT_FAILURE);
+			}
 		}
 	}
 	else
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", l);
-		fclose(aux.file);
-		free(aux.line_inf);
+		fclose(global.f_hand);
+		free(global.monty_line);
 		freePlates(*stack);
 		exit(EXIT_FAILURE);
 	}
 
-	push_data = atoi(aux.val);
-	if (aux.flag_sq == 0)
+	push_data = atoi(global.p_data);
+	if (global.data_str == 0)
 		add_top(stack, push_data);
 	else
-		add_last(atack, push_data);
+		add_last(stack, push_data);
 }
 
 /**
@@ -48,19 +49,18 @@ void push_data(stack_t **stack, unsigned int l)
 void add_top(stack_t **stack, int push_data)
 {
 	stack_t *front = *stack;
-       	stack_t *new_plate = malloc(sizeof(stack_t));
+	stack_t *new_plate = malloc(sizeof(stack_t));
 
 	if (new_plate == NULL)
 	{
-		printf("Error\n");
 		exit(0);
 	}
-	if (tmp != NULL)
-		tmp->prev = new_plate;
+	if (front != NULL)
+		front->prev = new_plate;
 	new_plate->n = push_data;
 	new_plate->next = *stack;
 	new_plate->prev = NULL;
-	*stack = new_plate
+	*stack = new_plate;
 
 }
 
@@ -103,8 +103,8 @@ void delete_top(stack_t **stack, unsigned int line_number)
 	if (*stack == NULL)
 	{
 		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
-		fclose(aux.file);
-		free(aux.line_inf);
+		fclose(global.f_hand);
+		free(global.monty_line);
 		freePlates(*stack);
 		exit(EXIT_FAILURE);
 	}
