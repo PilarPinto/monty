@@ -5,7 +5,7 @@
  * @stack: Is the pointer to stack mem addresss
  * @line_num: Is the current line number
  */
-void swap2top(stack_t **stack, unsigned int line_numb)
+void swap2top(stack_t **stack, unsigned int line_num)
 {
 	stack_t *tmp_node;
 	int len = 0, swapopc;
@@ -21,8 +21,8 @@ void swap2top(stack_t **stack, unsigned int line_numb)
 	if (len < 2)
 	{
 		fprintf(stderr, "L%d: can't swap, stack too short\n", line_num);
-		fclose(aux.file);
-		free(aux.line_inf);
+		fclose(global.f_hand);
+		free(global.monty_line);
 		freePlates(*stack);
 		exit(EXIT_FAILURE);
 	}
@@ -34,11 +34,11 @@ void swap2top(stack_t **stack, unsigned int line_numb)
 }
 
 /**
- * rotate_top: Rotate the top of the stack
+ * rotate_top - Rotate the top of the stack
  * @stack: Is the pointer to stack mem address
- * @line_number: Is unused
+ * @line_num: Is unused
  */
-void rotate_top(stack_t **stack, __atribute__((unused)) unsigned int line_numb)
+void rotate_top(stack_t **stack, __attribute__((unused)) unsigned int line_num)
 {
 	stack_t *rot_node = *stack;
 	stack_t *tmp;
@@ -47,7 +47,7 @@ void rotate_top(stack_t **stack, __atribute__((unused)) unsigned int line_numb)
 		return;
 	tmp = (*stack)->next;
 	tmp->prev = NULL;
-	while(rot_node->next != NULL)
+	while (rot_node->next != NULL)
 		rot_node = rot_node->next;
 	rot_node->next = *stack;
 	(*stack)->next = NULL;
@@ -56,18 +56,18 @@ void rotate_top(stack_t **stack, __atribute__((unused)) unsigned int line_numb)
 }
 
 /**
- * rotate_top: Rotate the top of the stack
+ * rotate_bottom - Rotate the top of the stack
  * @stack: Is the pointer to stack mem address
- * @line_number: Is unused
+ * @line_num: Is unused
  */
-void rotate_bottom(stack_t **stack, unsigned int line_number)
+void rotate_bottom(stack_t **stack, unsigned int line_num)
 {
 	stack_t *rot_node = *stack;
-	void(line_number);
+	(void) line_num;
 
 	if (*stack == NULL || (*stack)->next == NULL)
 		return;
-	while(rot_node->next)
+	while (rot_node->next)
 		rot_node = rot_node->next;
 
 	rot_node->next = *stack;
