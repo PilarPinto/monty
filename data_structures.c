@@ -9,7 +9,7 @@ void queuef(stack_t **stack, unsigned int line_number)
 {
 	(void)stack;
 	(void)line_number;
-	aux.flag_sq = 0;
+	global.data_str = 0;
 }
 
 /**
@@ -21,5 +21,5 @@ void stackf(stack_t **stack, unsigned int line_number)
 {
 	(void)stack;
 	(void)line_number;
-	aux.flag_sq = 1;
+	global.data_str = 1;
 }
