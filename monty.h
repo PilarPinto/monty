@@ -24,9 +24,9 @@
  */
 typedef struct stack_s
 {
-        int n;
-        struct stack_s *prev;
-        struct stack_s *next;
+	int n;
+	struct stack_s *prev;
+	struct stack_s *next;
 } stack_t;
 
 /**
@@ -37,16 +37,16 @@ typedef struct stack_s
  * @flag_sq: 0 or 1 isf is a queue
  *
  */
-typedef struct aux_s
+typedef struct global_s
 {
-	char *val;
-	FILE *file;
-	char *line_inf;
-	int flag_sq;
-} aux_t;
+	char *p_data;
+	FILE *f_hand;
+	char *monty_line;
+	int data_str;
+} global_t;
 
 /*Global definition*/
-extern aux_t aux;
+extern global_t global;
 
   /**
    * struct instruction_s - opcode and its function
@@ -57,7 +57,7 @@ extern aux_t aux;
    * for stack, queues, LIFO, FIFO Holberton project
    */
 typedef struct instruction_s
-  {
+{
 	  char *opcode;
 	  void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
@@ -65,9 +65,11 @@ typedef struct instruction_s
 
 
 /*Functions*/
+
 /*main*/
 void freePlates(stack_t *stack);
 int opcSelec(char *line_inf, stack_t **stack, unsigned int lnum, FILE *file);
+
 /*maths*/
 void addm(stack_t **stack, unsigned int line_num);
 void subm(stack_t **stack, unsigned int line_num);
@@ -78,8 +80,8 @@ void modm(stack_t **stack, unsigned int line_num);
 
 /*actions*/
 void push_data(stack_t **stack, unsigned int line_number);
-void add_top(stack_t **stack, unsigned int line_number);
-void add_last(stack_t **stack, unsigned int line_number);
+void add_top(stack_t **stack, int push_data);
+void add_last(stack_t **stack, int push_data);
 void delete_top(stack_t **stack, unsigned int line_number);
 void nop(stack_t **stack, unsigned int line_number);
 
